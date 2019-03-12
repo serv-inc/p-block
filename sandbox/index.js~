@@ -1,0 +1,9 @@
+var canvasA = document.getElementById("canvasA");
+var canvasB = document.getElementById("canvasB");
+var image = new MarvinImage();
+
+image.load("https://i.imgur.com/ZcCe0eC.jpg", function(){
+		image.draw(canvasA);
+		Marvin.colorChannel(image, image, 14, 0, -8);
+		image.draw(canvasB);
+	});

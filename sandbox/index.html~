@@ -1,0 +1,5 @@
+<script src="https://www.marvinj.org/releases/marvinj-0.9.js"></script>
+<div style="display:flex;">
+<canvas id="canvasA" width="300" height="156"></canvas><br/>
+<canvas id="canvasB" width="300" height="156" style="display:inline-block"></canvas>
+</div>
