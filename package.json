@@ -1,0 +1,27 @@
+{
+  "name": "p*block",
+  "version": "1.0.0",
+  "description": "Web- and Chrome-extension to block all images with male genitalia",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^4.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/serv-inc/p-block.git"
+  },
+  "keywords": [
+    "content",
+    "blocker"
+  ],
+  "author": "github.com/serv-inc",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/serv-inc/p-block/issues"
+  },
+  "homepage": "https://github.com/serv-inc/p-block#readme"
+}
