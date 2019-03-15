@@ -1,2 +1,3 @@
 * Uses
 - http://www.marvinj.org
+- images from https://www.cs.toronto.edu/~kriz/cifar.html, the [[https://www.cs.toronto.edu/~kriz/cifar-100-python.tar.gz][CIFAR-100 dataset]]
