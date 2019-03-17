@@ -1,3 +1,16 @@
 * Uses
 - http://www.marvinj.org
 - images from https://www.cs.toronto.edu/~kriz/cifar.html, the [[https://www.cs.toronto.edu/~kriz/cifar-100-python.tar.gz][CIFAR-100 dataset]]
+  - code from their page
+  #+BEGIN_SRC python
+    def unpickle(file):
+        import cPickle
+        with open(file, 'rb') as fo:
+            dict = cPickle.load(fo)
+        return dict
+  #+END_SRC
+  - show single image
+    #+BEGIN_SRC python
+      train = unpickle("./images/cifar-100-python/train")
+      Image.fromarray(train['data'][0].reshape(96, 3072/96)).show()
+    #+END_SRC
