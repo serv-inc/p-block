@@ -14,3 +14,4 @@
       train = unpickle("./images/cifar-100-python/train")
       Image.fromarray(train['data'][0].reshape(96, 3072/96)).show()
     #+END_SRC
+- [[https://keras.io/examples/cifar10_cnn/][keras,io example for cifar-10]]
