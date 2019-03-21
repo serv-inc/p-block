@@ -1,5 +1,32 @@
 * Uses
 - http://www.marvinj.org
-- images from the open image dataset
-  1. `pip install awscli`
-  2. `aws s3 --no-sign-request cp s3://open-images-dataset/tar/challenge2018.tar.gz .` (18GB)
+- images from
+  - https://www.cs.toronto.edu/~kriz/cifar.html, the [[https://www.cs.toronto.edu/~kriz/cifar-100-python.tar.gz][CIFAR-100 dataset]]
+    - code from their page
+    #+BEGIN_SRC python
+      def unpickle(file):
+          import cPickle
+          with open(file, 'rb') as fo:
+              dict = cPickle.load(fo)
+          return dict
+    #+END_SRC
+    - show single image
+      #+BEGIN_SRC python
+        train = unpickle("./images/cifar-100-python/train")
+        Image.fromarray(train['data'][0].reshape(96, 3072/96)).show()
+      #+END_SRC
+    - [[https://keras.io/examples/cifar10_cnn/][keras,io example for cifar-10]]
+    - as input to regression
+#+BEGIN_SRC python
+cifar = unpickle("train")
+l0 = tf.keras.layers.Dense(units=3072, input_shape=[3072])
+l1 = tf.keras.layers.Dense(units=3072, input_shape=[3072])
+l2 = tf.keras.layers.Dense(units=100, input_shape=[3072])
+model = tf.keras.Sequential([l0, l1, l2])
+model.compile(loss='mean_squared_error', optimizer=tf.keras.optimizers.Adam(0.1))
+model.fit(cifar['data'], cifar['fine_labels'])
+model.predict(cifar['data'][0:1])
+#+END_SRC
+  - the open image dataset
+    1. `pip install awscli`
+    2. `aws s3 --no-sign-request cp s3://open-images-dataset/tar/challenge2018.tar.gz .` (18GB)
