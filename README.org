@@ -3,21 +3,21 @@
 - images from
   - https://www.cs.toronto.edu/~kriz/cifar.html, the [[https://www.cs.toronto.edu/~kriz/cifar-100-python.tar.gz][CIFAR-100 dataset]]
     - code from their page
-    #+BEGIN_SRC python
-      def unpickle(file):
-          import cPickle
-          with open(file, 'rb') as fo:
-              dict = cPickle.load(fo)
-          return dict
-    #+END_SRC
-    - show single image
       #+BEGIN_SRC python
-        cifar = unpickle("./images/cifar-100-python/train")
-        Image.fromarray(cifar['data'][0].reshape(96, 3072/96)).show()
+        def unpickle(file):
+            import cPickle
+            with open(file, 'rb') as fo:
+                dict = cPickle.load(fo)
+            return dict
       #+END_SRC
+    - show single image
+        #+BEGIN_SRC python
+          cifar = unpickle("./images/cifar-100-python/train")
+          Image.fromarray(cifar['data'][0].reshape(96, 3072/96)).show()
+        #+END_SRC
     - [[https://keras.io/examples/cifar10_cnn/][keras,io example for cifar-10]]
     - as input to regression
-#+BEGIN_SRC python
+  #+BEGIN_SRC python
   cifar = unpickle("train")
   l0 = tf.keras.layers.Dense(units=3072, input_shape=[3072])
   l1 = tf.keras.layers.Dense(units=3072, input_shape=[3072])
@@ -27,9 +27,14 @@
                 optimizer=tf.keras.optimizers.Adam(0.1))
   model.fit(cifar['data'], cifar['fine_labels'])
   model.predict(cifar['data'][0:1])
-#+END_SRC
-    - for classification, change
-      1. model.compile(optimizer='adam',  loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+  #+END_SRC
+      - for classification, change
+        1. model.compile(optimizer='adam',  loss='sparse_categorical_crossentropy', metrics=['accuracy'])
   - the open image dataset
     1. `pip install awscli`
     2. `aws s3 --no-sign-request cp s3://open-images-dataset/tar/challenge2018.tar.gz .` (18GB)
+  - use tf 2.0: 
+    #+BEGIN_SRC python
+      import pkg_resources
+      pkg_resources.require("tensorflow==2.0.0a0")
+    #+END_SRC
