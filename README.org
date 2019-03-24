@@ -38,3 +38,7 @@
       import pkg_resources
       pkg_resources.require("tensorflow==2.0.0a0")
     #+END_SRC
+- a collection of adult images, encrypted im [[./images/cipher]]
+  - to show, =mkdir plaintext; gocryptfs cipher plaintext= (use any
+    name for /plaintext/ dir)
+  - use the word i n s e c u r e as password, it's ugly, you have been warned
