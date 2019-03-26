@@ -1,44 +1,14 @@
 * Uses
 - http://www.marvinj.org
-- images from
-  - https://www.cs.toronto.edu/~kriz/cifar.html, the [[https://www.cs.toronto.edu/~kriz/cifar-100-python.tar.gz][CIFAR-100 dataset]]
-    - code from their page
-      #+BEGIN_SRC python
-        def unpickle(file):
-            import cPickle
-            with open(file, 'rb') as fo:
-                dict = cPickle.load(fo)
-            return dict
-      #+END_SRC
-    - show single image
-        #+BEGIN_SRC python
-          cifar = unpickle("./images/cifar-100-python/train")
-          Image.fromarray(cifar['data'][0].reshape(96, 3072/96)).show()
-        #+END_SRC
+- images from https://www.cs.toronto.edu/~kriz/cifar.html, the [[https://www.cs.toronto.edu/~kriz/cifar-100-python.tar.gz][CIFAR-100 dataset]]
+    - [[file:src/main/python/expore.py::#%20show%20single%20image][show single image]], uses [[file:src/main/python/expore.py::def%20unpickle(file):][unpickle]]
     - [[https://keras.io/examples/cifar10_cnn/][keras,io example for cifar-10]]
-    - as input to regression
-  #+BEGIN_SRC python
-  cifar = unpickle("train")
-  l0 = tf.keras.layers.Dense(units=3072, input_shape=[3072])
-  l1 = tf.keras.layers.Dense(units=3072, input_shape=[3072])
-  l2 = tf.keras.layers.Dense(units=100, input_shape=[3072])
-  model = tf.keras.Sequential([l0, l1, l2])
-  model.compile(loss='mean_squared_error',
-                optimizer=tf.keras.optimizers.Adam(0.1))
-  model.fit(cifar['data'], cifar['fine_labels'])
-  model.predict(cifar['data'][0:1])
-  #+END_SRC
-      - for classification, change
-        1. model.compile(optimizer='adam',  loss='sparse_categorical_crossentropy', metrics=['accuracy'])
-  - the open image dataset
+    - as input to [[file:src/main/python/expore.py::#%20try%20to%20classify][dummy classification]]
+- the open image dataset
     1. `pip install awscli`
     2. `aws s3 --no-sign-request cp s3://open-images-dataset/tar/challenge2018.tar.gz .` (18GB)
-  - use tf 2.0: 
-    #+BEGIN_SRC python
-      import pkg_resources
-      pkg_resources.require("tensorflow==2.0.0a0")
-    #+END_SRC
 - a collection of adult images, encrypted im [[./images/cipher]]
   - to show, =mkdir plaintext; gocryptfs cipher plaintext= (use any
     name for /plaintext/ dir)
   - use the word i n s e c u r e as password, it's ugly, you have been warned
+
