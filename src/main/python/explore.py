@@ -25,7 +25,7 @@ def toRBG(image):
                                  [raw[:32], raw[32:64], raw[64:]]))
     return pic
 
-toRBG(cifar['data'][0]).show()
+toRBG(cifar['data'][0]).show()  # name: cifar['filenames'][0].split("_s_")[0]
 
 # try to classify
 model = keras.Sequential([
