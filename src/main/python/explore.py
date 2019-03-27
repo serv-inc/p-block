@@ -19,7 +19,8 @@ def unpickle(file):
 
 # show single image
 cifar = unpickle("./images/cifar-100-python/train")
-Image.fromarray(cifar['data'][0].reshape(96, 3072/96)).show()
+pic = train['data'][0].reshape(96, 3072/96)
+c = Image.merge("RGB", map(Image.fromarray, [pic[:32], pic[32:64], pic[64:]]))
 
 # try to classify
 model = keras.Sequential([
