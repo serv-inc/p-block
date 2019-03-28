@@ -7,6 +7,8 @@
 - the open image dataset
     1. `pip install awscli`
     2. `aws s3 --no-sign-request cp s3://open-images-dataset/tar/challenge2018.tar.gz .` (18GB)
+       - you can interrupt (C-z) the download in-between and just use
+         part of the file
 - a collection of adult images, encrypted im [[./images/cipher]]
   - to show, =mkdir plaintext; gocryptfs cipher plaintext= (use any
     name for /plaintext/ dir)
