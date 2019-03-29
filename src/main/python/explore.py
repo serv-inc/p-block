@@ -20,8 +20,8 @@ def unpickle(filename):
 
 # show single image
 cifar = unpickle("./images/cifar-100-python/train")
-def to_image(byte_1d):
-    bands = byte_1d.reshape(96, 3072/96)
+def to_image(image):
+    bands = imagae.reshape(96, 3072/96)
     return Image.merge(
         "RGB", map(Image.fromarray, (bands[:32], bands[32:64], bands[64:])))
 COW = to_image(cifar['data'][0])  # name: cifar['filenames'][i].split("_s_")[0]
