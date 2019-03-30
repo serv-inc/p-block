@@ -5,9 +5,10 @@
 # import pkg_resources
 # pkg_resources.require("tensorflow==2.0.0a0")
 from PIL import Image, ImageFile
+
+import numpy as np
 import tensorflow as tf
 from tensorflow import keras
-import numpy as np
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
@@ -67,3 +68,24 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 model.fit_generator(train_generator, steps_per_epoch=400, epochs=5,
                     validation_data=validation_generator, validation_steps=40)
+# reuse net, see https://www.tensorflow.org/tutorials/images/hub_with_keras
+import tensorflow_hub as hub
+from tensorflow.keras import layers
+tf.enable_v2_behavior()
+
+classifier_url = "https://tfhub.dev/google/imagenet/mobilenet_v2_100_224/classification/2" #@param {type:"string"}
+def classifier(x):
+    classifier_module = hub.Module(classifier_url)
+    return classifier_module(x)
+
+IMAGE_SIZE = hub.get_expected_image_size(hub.Module(classifier_url))
+
+import tensorflow.keras.backend as K
+sess = K.get_session()
+init = tf.global_variables_initializer()
+
+classifier_layer = layers.Lambda(classifier, input_shape = IMAGE_SIZE+[3])
+classifier_model = tf.keras.Sequential([classifier_layer])
+
+
+sess.run(init)
