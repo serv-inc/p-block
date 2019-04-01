@@ -89,3 +89,15 @@ classifier_model = tf.keras.Sequential([classifier_layer])
 
 
 sess.run(init)
+
+feature_extractor_url = "https://tfhub.dev/google/imagenet/mobilenet_v2_100_224/feature_vector/2" #@param {type:"string"}
+feature_extractor_layer = hub.KerasLayer(feature_extractor_url,
+                                         input_shape=(224,224,3))
+feature_batch = feature_extractor_layer(image_batch)
+print(feature_batch.shape)
+feature_extractor_layer.trainable = False
+model = tf.keras.Sequential([
+  feature_extractor_layer,
+  layers.Dense(image_data.num_classes, activation='softmax')
+])
+# todo: save and use in tf.js
