@@ -10,7 +10,11 @@ import numpy as np
 import tensorflow as tf
 from tensorflow import keras
 
+import tensorflow_hub as hub
+from tensorflow.keras import layers
+
 ImageFile.LOAD_TRUNCATED_IMAGES = True
+tf.enable_v2_behavior()
 
 def unpickle(filename):
     '''load cifar images from https://www.cs.toronto.edu/~kriz/cifar.html'''
@@ -49,11 +53,11 @@ train_datagen = keras.preprocessing.image.ImageDataGenerator(
     zoom_range=0.2,
     horizontal_flip=True)
 train_generator = train_datagen.flow_from_directory(
-    'test',
+    '/tmp/test',
     target_size=(150, 150),
     batch_size=32, class_mode="sparse")
 validation_generator = train_datagen.flow_from_directory(
-    'test',
+    '/tmp/test',
     target_size=(150, 150),
     batch_size=32, class_mode="sparse")
 
@@ -69,9 +73,6 @@ model.compile(optimizer='adam',
 model.fit_generator(train_generator, steps_per_epoch=400, epochs=5,
                     validation_data=validation_generator, validation_steps=40)
 # reuse net, see https://www.tensorflow.org/tutorials/images/hub_with_keras
-import tensorflow_hub as hub
-from tensorflow.keras import layers
-tf.enable_v2_behavior()
 
 classifier_url = "https://tfhub.dev/google/imagenet/mobilenet_v2_100_224/classification/2" #@param {type:"string"}
 def classifier(x):
@@ -101,3 +102,15 @@ model = tf.keras.Sequential([
   layers.Dense(image_data.num_classes, activation='softmax')
 ])
 # todo: save and use in tf.js
+
+# try cnn
+model = keras.Sequential([
+    keras.layers.Conv2D(64, 3, input_shape=(150, 150, 3)),
+    keras.layers.MaxPool2D(2),
+    keras.layers.Conv2D(32, 2),
+    keras.layers.MaxPool2D(2),
+    keras.layers.Flatten(),
+    keras.layers.Dense(180, activation=tf.nn.relu),
+    keras.layers.Dense(180, activation=tf.nn.relu),
+    keras.layers.Dense(3, activation=tf.nn.softmax)
+])
