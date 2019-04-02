@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
+    "@tensorflow/tfjs": "^1.0.3",
     "gulp": "^4.0.0"
   },
   "scripts": {
