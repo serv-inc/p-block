@@ -114,3 +114,33 @@ model = keras.Sequential([
     keras.layers.Dense(180, activation=tf.nn.relu),
     keras.layers.Dense(3, activation=tf.nn.softmax)
 ])
+# use mobilenet model https://tfhub.dev/google/tf2-preview/mobilenet_v2/feature_vector/2
+num_classes=3
+IMAGE_SIZE=[224,224]
+
+train_datagen = keras.preprocessing.image.ImageDataGenerator(
+    rescale=1./255,
+    shear_range=0.2,
+    zoom_range=0.2,
+    horizontal_flip=True)
+train_generator = train_datagen.flow_from_directory(
+    '/tmp/test',
+    target_size=IMAGE_SIZE,
+    batch_size=32, class_mode="sparse")
+validation_generator = train_datagen.flow_from_directory(
+    '/tmp/test',
+    target_size=IMAGE_SIZE,
+    batch_size=32, class_mode="sparse")
+model = tf.keras.Sequential([
+    hub.KerasLayer(
+        "https://tfhub.dev/google/tf2-preview/mobilenet_v2/feature_vector/2",
+        output_shape=[1280],
+        trainable=False),  # Can be True, see below.
+    tf.keras.layers.Dense(num_classes, activation='softmax')
+])
+model.build([None, 224, 224, 3]) # Batch input shape.
+model.compile(optimizer='adam',
+              loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+model.fit_generator(train_generator, steps_per_epoch=400, epochs=5,
+                    validation_data=validation_generator, validation_steps=40)
