@@ -144,3 +144,4 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 model.fit_generator(train_generator, steps_per_epoch=400, epochs=5,
                     validation_data=validation_generator, validation_steps=40)
+model.save("./model.h5")
