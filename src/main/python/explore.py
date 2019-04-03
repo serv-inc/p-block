@@ -72,8 +72,8 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 model.fit_generator(train_generator, steps_per_epoch=400, epochs=5,
                     validation_data=validation_generator, validation_steps=40)
-# reuse net, see https://www.tensorflow.org/tutorials/images/hub_with_keras
 
+# reuse net, see https://www.tensorflow.org/tutorials/images/hub_with_keras
 classifier_url = "https://tfhub.dev/google/imagenet/mobilenet_v2_100_224/classification/2" #@param {type:"string"}
 def classifier(x):
     classifier_module = hub.Module(classifier_url)
