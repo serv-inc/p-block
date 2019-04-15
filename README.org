@@ -15,7 +15,7 @@
 - a collection of adult images, encrypted im [[./images/cipher]]
   - to show, =mkdir plaintext; gocryptfs cipher plaintext= (use any
     name for /plaintext/ dir)
-  - use the word i n s e c u r e as password, it's ugly, you have been warned
+  - use the word i n s e c u r e as password, it's partly ugly, you have been warned
   - [[file:src/main/python/explore.py::#%20classifying%20on-disk%20data][loading into tf]]
 ** Docs
 - https://www.tensorflow.org/tutorials/images/hub_with_keras
