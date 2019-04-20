@@ -39,3 +39,8 @@ model.compile(optimizer='adam',
 model.fit_generator(train_generator, steps_per_epoch=400, epochs=5,
                     validation_data=validation_generator, validation_steps=40)
 
+# from https://www.tensorflow.org/alpha/guide/keras/saving_and_serializing
+model.save('/tmp/path_to_my_model.h5')
+
+# Recreate the exact same model purely from the file
+#new_model = keras.models.load_model('path_to_my_model.h5')
