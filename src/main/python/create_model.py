@@ -36,7 +36,7 @@ model.build([None] + IMAGE_SIZE + [3])
 model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
-model.fit_generator(train_generator, steps_per_epoch=400, epochs=5,
+history = model.fit_generator(train_generator, steps_per_epoch=400, epochs=5,
                     validation_data=validation_generator, validation_steps=40)
 
 # from https://www.tensorflow.org/alpha/guide/keras/saving_and_serializing
