@@ -21,3 +21,12 @@
 - https://www.tensorflow.org/tutorials/images/hub_with_keras
 - https://www.tensorflow.org/js/tutorials/setup
 - https://github.com/tensorflow/tfjs-examples
+- https://www.tensorflow.org/hub/tutorials/image_retraining
+  - script at https://github.com/tensorflow/hub/raw/master/examples/image_retraining/retrain.py
+    - download with curl -LO https://github.com/tensorflow/hub/raw/master/examples/image_retraining/retrain.py
+  - to use other architectures, e.g.
+    python retrain.py \
+    --image_dir /tmp/test
+    --tfhub_module https://tfhub.dev/google/imagenet/mobilenet_v2_100_224/feature_vector/2
+  - result at /tmp/output_graph.pb
+
