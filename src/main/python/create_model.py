@@ -26,7 +26,6 @@ validation_generator = train_datagen.flow_from_directory(
     target_size=IMAGE_SIZE,
     batch_size=32, class_mode="sparse")
 
-
 # from https://tfhub.dev/google/tf2-preview/mobilenet_v2/feature_vector/2
 model = tf.keras.Sequential([
     hub.KerasLayer("https://tfhub.dev/google/tf2-preview/mobilenet_v2/feature_vector/2", output_shape=[1280], trainable=False),
@@ -36,8 +35,12 @@ model.build([None] + IMAGE_SIZE + [3])
 model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
-history = model.fit_generator(train_generator, steps_per_epoch=400, epochs=5,
-                    validation_data=validation_generator, validation_steps=40)
+# due to https://www.youtube.com/watch?v=-vHQub0NXI4
+early_stop = keras.callbacks.EarlyStopping(monitor='val_loss', patience=10)
+history = model.fit_generator(
+    train_generator, steps_per_epoch=400, epochs=5,
+    validation_data=validation_generator, validation_steps=40,
+    callbacks=[early_stop])
 
 # from https://www.tensorflow.org/alpha/guide/keras/saving_and_serializing
 model.save('/tmp/path_to_my_model.h5')
