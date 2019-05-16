@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "Web- and Chrome-extension to block all images with male genitalia",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "@tensorflow/tfjs-node": "^1.1.2"
+  },
   "devDependencies": {
-    "@tensorflow/tfjs": "^1.0.3",
-    "gulp": "^4.0.0"
+    "@tensorflow/tfjs": "^1.1.2",
+    "gulp": "^4.0.0",
+    "http-server": "^0.11.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
