@@ -1,4 +1,8 @@
 const tf = require("@tensorflow/tfjs-node")
-const model = tr.loadLayersModel("file:///tmp/converted_model/model.json")
+// testing
+tf.setBackend("cpu")  
+tf.enableDebugMode()
+// end testing
+const model = tf.loadLayersModel("file:///tmp/converted_model/model.json")
 
 
