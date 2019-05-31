@@ -4,7 +4,8 @@
   "description": "Web- and Chrome-extension to block all images with male genitalia",
   "main": "index.js",
   "dependencies": {
-    "@tensorflow/tfjs-node": "^1.1.2"
+    "@tensorflow/tfjs-node": "^1.1.2",
+    "sharp": "^0.22.1"
   },
   "devDependencies": {
     "@tensorflow/tfjs": "^1.1.2",
