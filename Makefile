@@ -1,9 +1,11 @@
+.PHONY: all mountcrypt retrain submodules encrypted_zip	
+
 all: mountcrypt
 
 setup: submodules
 
 mountcrypt: images/plaintext images/cipher
-	cd images && gocryptfs cipher/ plaintext/
+	cd images && gocryptfs -q cipher/ plaintext/
 
 images/plaintext:
 	mkdir images/plaintext
@@ -25,3 +27,7 @@ retrain: /tmp/example_code/retrain.py # images in tmp/test
 submodules:
 	git submodule init
 	git submodule update
+
+encrypted_zip: images/plaintext
+	zip --encrypt -r images/does.zip images/plaintext/somepns/
+	zip --encrypt -r images/no.zip images/plaintext/nopns/
