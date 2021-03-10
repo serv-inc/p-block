@@ -1,7 +1,7 @@
 all: mountcrypt
 
 mountcrypt: images/plaintext images/cipher
-	cd images && gocryptfs cipher/ plaintext/
+	cd images && gocryptfs -q cipher/ plaintext/
 
 images/plaintext:
 	mkdir images/plaintext
