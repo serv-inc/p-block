@@ -1,5 +1,7 @@
 all: mountcrypt
 
+setup: submodules
+
 mountcrypt: images/plaintext images/cipher
 	cd images && gocryptfs cipher/ plaintext/
 
