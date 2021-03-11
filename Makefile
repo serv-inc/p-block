@@ -3,6 +3,8 @@
 all: mountcrypt
 
 setup: submodules
+	git lfs fetch
+	git lfs checkout
 
 mountcrypt: images/plaintext images/cipher
 	cd images && gocryptfs -q cipher/ plaintext/
