@@ -33,3 +33,7 @@ submodules:
 encrypted_zip: images/plaintext
 	zip --encrypt -r images/does.zip images/plaintext/somepns/
 	zip --encrypt -r images/no.zip images/plaintext/nopns/
+
+decrypt_zip: images/does.zip images/no.zip
+	unzip images/no.zip 
+	unzip images/does.zip 
