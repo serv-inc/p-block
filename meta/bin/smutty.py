@@ -3,6 +3,7 @@
 from dataclasses import dataclass
 import os
 import logging
+import sys
 
 import requests
 from bs4 import BeautifulSoup
@@ -104,7 +105,12 @@ class ImagePage:
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    t = TagPage.from_tag("female")
+    try:
+        subject = sys.argv[1]
+    except:
+        subject = "female"
+    logging.info("downloading for %s", subject)
+    t = TagPage.from_tag(subject)
     for _ in range(100):
         t.download_all()
         t = t.next_page()
