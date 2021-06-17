@@ -1,1 +1,1 @@
-for i in $(find . -name "*gif"); do optipng -snip $i; rm $i; done
+for i in $(find . -name "*gif"); do optipng -snip $i && rm $i; done
