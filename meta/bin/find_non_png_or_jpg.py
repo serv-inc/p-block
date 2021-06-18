@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+"""finds files in current dir that are neither jpeg nor png"""
 import os
 import subprocess
 
