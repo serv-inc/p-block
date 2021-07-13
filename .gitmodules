@@ -3,4 +3,4 @@
 	url = https://github.com/tensorflow/tfjs-examples/
 [submodule "meta/node-tfjs-retrain"]
 	path = meta/node-tfjs-retrain
-	url = https://github.com/adwellj/node-tfjs-retrain
+	url = https://github.com/serv-inc/node-tfjs-retrain.git
