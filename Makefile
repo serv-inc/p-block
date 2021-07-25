@@ -1,4 +1,4 @@
-.PHONY: all mountcrypt retrain submodules encrypted_zip
+.PHONY: all mountcrypt retrain submodules encrypted_zip train
 
 all: mountcrypt
 
@@ -40,3 +40,6 @@ decrypt_zip: images/does.zip images/no.zip
 
 model_gls:
 	cd meta/node-tfjs-retrain/ && node app.js --images_dir="../../../../.keras/datasets/flower_photos/" --model_dir="../../model-flowers-gls-only"
+
+train: submodules
+	cd meta/node-tfjs-retrain/ && make train
