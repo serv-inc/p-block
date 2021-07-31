@@ -1,4 +1,4 @@
-.PHONY: all mountcrypt retrain submodules encrypted_zip train
+.PHONY: all mountcrypt retrain submodules encrypted_zip train clean
 
 all: mountcrypt
 
@@ -25,3 +25,5 @@ train: submodules
 smaller:
 	cd images/plaintext && for i in $(ls); do (cd $i; optipng -snip *gif && rm *gif); done
 
+clean:
+	rm -rf V
