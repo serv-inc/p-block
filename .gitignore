@@ -3,3 +3,5 @@ doc
 node_modules/
 TODO.org
 __pycache__
+browser-codelab/result/
+images/problem/
