@@ -3,14 +3,10 @@
 - http://www.marvinj.org
 - https://www.tensorflow.org/js/
 ** Images
-- images from https://www.cs.toronto.edu/~kriz/cifar.html, the [[https://www.cs.toronto.edu/~kriz/cifar-100-python.tar.gz][CIFAR-100 dataset]]
-  - [[file:src/main/python/expore.py::#%20show%20single%20image][show single image]], uses [[file:src/main/python/expore.py::def%20unpickle(file):][unpickle]]
-  - [[https://keras.io/examples/cifar10_cnn/][keras,io example for cifar-10]]
-  - as input to [[file:src/main/python/explore.py::#%20try%20to%20classify][dummy classification]]
-- the open image dataset
-  1. `pip install awscli`
-  2. `aws s3 --no-sign-request cp s3://open-images-dataset/tar/challenge2018.tar.gz .` (18GB)
-     - you can interrupt (C-z) the download in-between and just use
+from the open image dataset, to download
+1. `pip install awscli`
+2. `aws s3 --no-sign-request cp s3://open-images-dataset/tar/challenge2018.tar.gz .` (18GB)
+   - you can interrupt (C-z) the download in-between and just use
        part of the file
 - a collection of adult images, encrypted im [[./images/cipher]]
   - to show, =mkdir plaintext; gocryptfs cipher plaintext= (use any
