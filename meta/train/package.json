@@ -1,0 +1,14 @@
+{
+  "name": "p-block-traing",
+  "version": "1.0.0",
+  "description": "change model for images",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sharp": "^0.29.1"
+  }
+}
